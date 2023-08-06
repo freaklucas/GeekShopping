@@ -1,3 +1,5 @@
+using System;
+
 namespace GeekShopping.ProductAPI
 {
     public class WeatherForecast
