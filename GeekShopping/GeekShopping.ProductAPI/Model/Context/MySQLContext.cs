@@ -9,6 +9,13 @@ namespace GeekShopping.ProductAPI.Model.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            });
+
+
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 Id = 7,

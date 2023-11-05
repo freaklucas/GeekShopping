@@ -34,7 +34,11 @@ namespace GeekShopping.Web.Services
             if (response.IsSuccessStatusCode)
                 return await response.ReadContentAs<ProductModel>();
 
-            else throw new Exception("something went wrong when calling api");
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Error calling API: {error}");
+            }
         }
 
         public async Task<ProductModel> UpdateProduct(ProductModel model)
