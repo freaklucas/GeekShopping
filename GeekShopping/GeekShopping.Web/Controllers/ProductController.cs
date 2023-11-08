@@ -32,7 +32,6 @@ namespace GeekShopping.Web.Controllers
             {
                 var response = await _productService.CreateProduct(model);
                 if(response != null) return RedirectToAction(nameof(ProductIndex));
-
             }
             return View(model);
         }

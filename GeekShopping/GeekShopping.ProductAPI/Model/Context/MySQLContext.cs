@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GeekShopping.ProductAPI.Controllers.Auth;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeekShopping.ProductAPI.Model.Context
 {
@@ -6,7 +7,7 @@ namespace GeekShopping.ProductAPI.Model.Context
     {
         public MySQLContext(DbContextOptions options) : base(options) { }
         public DbSet<Product> Products { get; set; }
-
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>(entity =>
@@ -15,7 +16,12 @@ namespace GeekShopping.ProductAPI.Model.Context
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
-
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            });
+    
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 Id = 7,
